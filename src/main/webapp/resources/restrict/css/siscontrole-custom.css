@@ -1,0 +1,270 @@
+                @media ( min-width: 35em ) {
+
+                        /* wrap on wide viewports once open */
+
+                        .ui-panel-page-content-open.ui-panel-page-content-position-left {
+                                margin-right: 17em;
+                        }
+                        .ui-panel-page-content-open.ui-panel-page-content-position-right {
+                                margin-left: 17em;
+                        }
+                        .ui-panel-page-content-open {
+                                width: auto;
+                        }
+
+                        /* disable "dismiss" on wide viewports */
+                        .ui-panel-dismiss {
+                                display: none;
+                        }
+
+                        /* same as the above but for panels with display mode "push" only */
+
+                        .ui-panel-page-content-open.ui-panel-page-content-position-left.ui-panel-page-content-display-push {
+                                margin-right: 17em;
+                        }
+                        .ui-panel-page-content-open.ui-panel-page-content-position-right.ui-panel-page-content-display-push {
+                                margin-left: 17em;
+                        }
+                        .ui-panel-page-content-open.ui-panel-page-content-display-push {
+                                width: auto;
+                        }
+
+                        .ui-panel-dismiss-display-push {
+                                display: none;
+                        }
+                        
+                  
+                        
+                }   
+               
+                .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+                  background-color: #0094d9;background-image: url('http://www.transparenttextures.com/patterns/light-wool.png');
+                }
+                
+.ui-widget .ui-widget {
+    font-size: 0.8em;
+}              
+
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+ 
+    font-size: 0.7em;
+}
+
+
+
+            .diffuse-light {
+              -webkit-box-sizing: content-box;
+              -moz-box-sizing: content-box;
+              box-sizing: content-box;
+              border: none;
+              font: normal 35px/normal "Arizonia", Helvetica, sans-serif;
+              color: rgba(255,255,255,1);
+              text-align: center;
+              -o-text-overflow: clip;
+              text-overflow: clip;
+              text-shadow: 0 15px 29px rgba(0,0,0,0.0980392) , 1px 2px 5px rgba(0,0,0,0.0470588) , -1px 2px 5px rgba(0,0,0,0.0470588) ;
+              -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+              -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+              -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+              transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+            }
+
+            .diffuse-light:hover {
+              text-shadow: 0 -15px 29px rgba(0,0,0,0.0980392) , 1px -2px 5px rgba(0,0,0,0.0470588) , -10px -20px 5px rgba(0,0,0,0.0470588) ;
+            } 
+            .ui-selectonemenu label.ui-selectonemenu-label {
+    cursor: pointer;
+    margin: 5px;
+}
+
+.tool-bot {
+  display: inline-block !important;
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+  width: 16px !important;
+  margin-right: 8px !important;
+  height: 32px !important;
+  position: relative !important;
+  cursor: pointer !important;
+  top: 0 !important;
+  padding: 0px !important;
+  padding-right: 15px !important;
+  border: 1px solid rgb(225,225,225) !important;
+  font: normal normal 300 15px/32px "Electrolize", Helvetica, sans-serif !important;
+  color: rgb(102, 102, 102) !important;
+  text-align: center !important;
+  -o-text-overflow: clip !important;
+  text-overflow: clip !important;
+  background: -webkit-linear-gradient(0deg, rgb(243,243,243) 0, rgb(233,233,233) 100%), rgb(238, 238, 238) !important;
+  background: -moz-linear-gradient(90deg, rgb(243,243,243) 0, rgb(233,233,233) 100%), rgb(238, 238, 238) !important;
+  background: linear-gradient(90deg, rgb(243,243,243) 0, rgb(233,233,233) 100%), rgb(238, 238, 238) !important;
+  -webkit-background-origin: padding-box !important;
+  background-origin: padding-box !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-background-size: auto auto !important;
+  background-size: auto auto !important;
+  -webkit-box-shadow: 0 1px 0 0 rgba(255,255,255,0.298039) inset, 0 -1px 1px 0 rgba(255,255,255,0.14902) inset, 0 7px 0 0 rgb(187,187,187) , 0 8px 3px 0 rgba(0,0,0,0.2)  !important;
+  box-shadow: 0 1px 0 0 rgba(255,255,255,0.298039) inset, 0 -1px 1px 0 rgba(255,255,255,0.14902) inset, 0 7px 0 0 rgb(187,187,187) , 0 8px 3px 0 rgba(0,0,0,0.2)   !important;
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+  -moz-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+  -o-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+  transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+}
+
+.tool-bot:hover {
+  color: rgba(135,135,135,1) !important;
+  background: -webkit-linear-gradient(-90deg, rgb(255,255,255) 0, rgb(235,235,235) 100%), -webkit-linear-gradient(0deg, rgb(243,243,243) 0, rgb(233,233,233) 100%), rgb(238, 238, 238) !important;
+  background: -moz-linear-gradient(180deg, rgb(255,255,255) 0, rgb(235,235,235) 100%), -moz-linear-gradient(90deg, rgb(243,243,243) 0, rgb(233,233,233) 100%), rgb(238, 238, 238) !important;
+  background: linear-gradient(180deg, rgb(255,255,255) 0, rgb(235,235,235) 100%), linear-gradient(90deg, rgb(243,243,243) 0, rgb(233,233,233) 100%), rgb(238, 238, 238) !important;
+  -webkit-background-origin: padding-box !important;
+  background-origin: padding-box !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-background-size: auto auto !important;
+  background-size: auto auto !important;
+}
+
+.tool-bot:active {
+  top: 6px;
+  color: rgba(160,160,160,1) !important;
+  background: -webkit-linear-gradient(-90deg, rgb(255,255,255) 0, rgb(235,235,235) 100%), rgb(255, 255, 255) !important;
+  background: -moz-linear-gradient(180deg, rgb(255,255,255) 0, rgb(235,235,235) 100%), rgb(255, 255, 255) !important;
+  background: linear-gradient(180deg, rgb(255,255,255) 0, rgb(235,235,235) 100%), rgb(255, 255, 255) !important;
+  -webkit-background-origin: padding-box !important;
+  background-origin: padding-box !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-background-size: auto auto !important;
+  background-size: auto auto !important;
+  -webkit-box-shadow: 0 1px 0 0 rgba(255,255,255,0.298039) inset, 0 -1px 1px 0 rgba(255,255,255,0.14902) inset !important;
+  box-shadow: 0 1px 0 0 rgba(255,255,255,0.298039) inset, 0 -1px 1px 0 rgba(255,255,255,0.14902) inset !important;
+  -webkit-transition: all 50ms cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+  -moz-transition: all 50ms cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+  -o-transition: all 50ms cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+  transition: all 50ms cubic-bezier(0.25, 0.25, 0.75, 0.75) !important;
+}
+
+.ui-input-text{
+    width: 95% !important;
+}
+
+.sis-input {
+  display: inline-block !important;  
+  width: 95% !important;
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+  padding: 10px 20px !important;
+  border: 1px solid #b7b7b7 !important;
+  -webkit-border-radius: 3px !important;
+  border-radius: 3px !important;
+  font: normal medium/normal Arial, Helvetica, sans-serif !important;
+  color: rgba(0,142,198,1) !important;
+  -o-text-overflow: clip !important;
+  text-overflow: clip !important;
+  background: rgba(252,252,252,1) !important;
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset !important;
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset !important;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.66)  !important;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+}
+
+.sis-input:hover {
+  border: 1px solid #a3a3a3 !important;
+  background: rgba(255,255,255,1) !important;
+  -webkit-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  -moz-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  -o-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+}
+
+.sis-input:focus {
+  border: 1px solid #018dc4 !important;
+  -webkit-box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2) inset !important;
+  box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2) inset !important;
+  -webkit-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  -moz-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+  transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1) !important;
+}
+
+
+.ui-select{
+  width: 95% !important;
+}
+
+.ui-selectonemenu{
+  width: 95% !important;
+}
+
+
+
+
+.sis-label {
+    display: block !important;
+    margin: 0 0 0 !important;
+    padding-top: 27px !important;
+    font-size: smaller !important;
+}
+
+.ui-widget-header{
+    border:1px solid #a8a8a8;
+    background:#c4c4c4 url("/semeru_jsf_maven/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png.faces?ln=primefaces-aristo") 50% 50% repeat-x;background:#c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));background:#c4c4c4 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));background:#c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    font-weight: bold !important;
+    font-size: 80% !important;;
+    color: #000 !important;
+}
+
+.ui-column-title{
+     font-weight: 100 !important;
+    font-size: 100% !important;
+    color: #000 !important;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+    font-size: 70% !important;
+    
+}
+
+.sis-btn-form{
+  width: 35% !important;
+  
+}
+
+.sis-tool-bar{
+  margin-right: 45px  !important;
+  margin-left: 165px  !important;
+  height: 50px !important;
+}
+
+.jqplot-target {
+ 
+    color: #000 !important;
+}
+
+.jqplot-series-canvas {
+  background: transparent !important;
+}
+.jqplot {  
+  borderWidth: 0 !important;
+}
+.sis-pie{
+  width:200px !important;
+  height:300px !important; 
+  float: left !important; 
+  margin-right: 1% !important;    
+}
+
+.sis-ui-select{
+  width: 100% !important;
+  
+}
+
+.ui-dialog {
+     background: #fff !important; 
+}

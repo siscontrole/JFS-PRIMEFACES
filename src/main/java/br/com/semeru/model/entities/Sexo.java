@@ -2,7 +2,6 @@ package br.com.semeru.model.entities;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,25 +14,19 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name="sexo")
 public class Sexo implements Serializable {
-    private static final long serialVesrionUID = 1L;
+    
+    private static final long serialVersionUID =  1L;   
+    
     @Id
     @GeneratedValue
-    @Column(name="idSexo", nullable = false)
+    @Column(name="IdSexo",nullable=false)
     private Integer idSexo;
-    @Column(name="Descricao", unique = true, nullable = false, length = 9)
+    @Column(name="Descricao", unique=true, nullable=false, length=9)
     private String descricao;
-    
+
     @OneToMany(mappedBy = "sexo", fetch = FetchType.LAZY)
-    @ForeignKey(name = "PessoaSexo")
+    @ForeignKey(name = "PessoaSexo")        
     private List<Pessoa> pessoas;
-
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
-    }
     
     public Sexo() {
     }
@@ -54,18 +47,23 @@ public class Sexo implements Serializable {
         this.descricao = descricao;
     }
 
+    public List<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.idSexo);
+        hash = 97 * hash + (this.idSexo != null ? this.idSexo.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -73,12 +71,10 @@ public class Sexo implements Serializable {
             return false;
         }
         final Sexo other = (Sexo) obj;
-        if (!Objects.equals(this.idSexo, other.idSexo)) {
+        if (this.idSexo != other.idSexo && (this.idSexo == null || !this.idSexo.equals(other.idSexo))) {
             return false;
         }
         return true;
     }
-    
-    
     
 }

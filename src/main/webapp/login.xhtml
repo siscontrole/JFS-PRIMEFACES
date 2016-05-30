@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+    <h:head>
+        <title>Login - Convite Virtual</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.js" type="text/javascript" rel="javascript" />       
+    </h:head>
+    
+    <h:body onload="jQuery('#j_username').focus();">
+        <div id="conteudo" title="Área Restrita">
+            
+            <h:form>
+                <p:growl id="msg" rendered="#{param.erro}">#{msgs.erro_message}</p:growl>
+            </h:form>
+
+            <p:dialog header="Área Restrita"
+                      id="dialog"  
+                      modal="true"
+                      minWidth="335"
+                      width="335"
+                      closable="false"
+                      position="center"
+                      widgetVar="modalLogin"
+                      showEffect="slide" 
+                      draggable="false"
+                      resizable="false"
+                      visible="true">
+
+
+                <form action="j_spring_security_check" method="post" id="login">
+                    <h:panelGrid columns="2" cellpadding="3">
+                        <h:outputLabel for="j_username" value="Usuário: " /> 
+                        <h:inputText id="j_username" required="true"/>
+                        <h:outputLabel for="j_password" value="Senha: " />
+                        <h:inputSecret id="j_password" required="true"/>
+                        
+			<h:outputLabel value="Lembrar " />
+                        <input type='checkbox' name='_spring_security_remember_me'/>
+                        <h:commandButton value="Acessar"/>
+                    </h:panelGrid>
+                </form>
+            </p:dialog>  
+        </div>
+
+        <!-- Fim da div conteudo -->
+        
+
+     
+
+<div data-role="footer" style="text-align: center">
+    
+    <div style="font-size: 100%; font-weight:10"><div>CONVITE VIRTUAL</div><small style="font-size: 60%">confirmação de presença</small></div>    
+</div>
+
+
+    </h:body>
+</html>

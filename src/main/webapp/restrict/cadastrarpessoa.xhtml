@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="./../resources/main.xhtml">
+    
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>     
+        
+    <ui:define name="tarefas">
+        <div  data-role="collapsibleset" data-theme="a" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                <div data-role="collapsible" id="formaPessoa"> 
+                    <h3>Usuários</h3> 
+                    <h:form prependId="false" id="formPessoa">
+                        <p:growl id="msg0"/> 
+                        <div class="ui-fluid">
+                        <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" styleClass="ui-panelgrid-blank" id="grid0" layout="grid">
+                                <h:outputLabel/>
+                                <h:inputHidden id="idpessoa" value="#{mbPessoa.pessoa.idPessoa}"/> 
+                                
+                                <h:outputText value="Permissão" styleClass="sis-label" />
+                                <h:selectOneMenu  value="#{mbPessoa.pessoa.permissao}" required="true" requiredMessage="Selecione uma situação" >
+                                       <f:selectItem itemLabel="Administrador" itemValue="ROLE_ADMIN"/>
+                                       <f:selectItem itemLabel="Organizador" itemValue="ROLE_STAFF" />  
+                                </h:selectOneMenu>                                
+        
+                                <h:outputText value="Nome" styleClass="sis-label" />                            
+                                <p:inputText id="nomePessoa" size="40" value="#{mbPessoa.pessoa.nome}" styleClass="sis-input"
+                                             required="true" requiredMessage="O campo [Nome] é obrigatório"
+                                             onkeyup="this.value = this.value.toUpperCase()"/>
+                                
+                                
+                                <h:outputText value="Sexo" styleClass="sis-label" />
+                                <h:selectOneMenu  value="#{mbPessoa.pessoa.sexo.idSexo}" required="true" requiredMessage="Selecione uma opção" >
+                                       <f:selectItems value="#{bbSexo.sexos}" var="sexo" itemValue="#{sexo.idSexo}" itemLabel="#{sexo.descricao}"/>                                       
+                                </h:selectOneMenu>                                    
+
+
+                                <h:outputText value="Telefone" styleClass="sis-label" /> 
+                                <p:inputMask id="telefone" size="40" mask="" styleClass="sis-input"
+                                             value="#{mbPessoa.pessoa.telefone}"
+                                             required="true" requiredMessage="O campo [Telefone] é obrigatório"
+                                             onkeyup="this.value = this.value.toUpperCase()"/>
+
+                                <h:outputText value="E-mail" styleClass="sis-label" /> 
+                                <p:inputText id="email" size="40" value="#{mbPessoa.pessoa.email}" styleClass="sis-input"
+                                             required="true" requiredMessage="O campo [E-mail] é obrigatório">
+                                    <f:validator validatorId="emailValidator"/>
+                                </p:inputText>
+
+
+
+                                <h:outputText value="Nascimento" styleClass="sis-label" /> 
+                                <p:calendar id="dataNascimento" value="#{mbPessoa.pessoa.dataDeNascimento}"  
+                                            required="true" requiredMessage="O campo [Data de Nascimento] é obrigatório"
+                                            locale="pt_BR" navigator="true" effect="explode" pattern="dd/MM/yyyy"/>
+
+                                <h:outputText value="Usuário" styleClass="sis-label" /> 
+                                <p:inputText id="usuario" value="#{mbPessoa.pessoa.login}" size="30" styleClass="sis-input"/> 
+
+                                <h:outputText value="Senha" styleClass="sis-label" /> 
+                                <p:password id="senha" size="30" maxlength="22" promptLabel="Digite sua Senha" value="#{mbPessoa.pessoa.senha}" styleClass="sis-input"
+                                            weakLabel="Senha Fraca" goodLabel="Senha Boa" strongLabel="Senha Forte" feedback="true" redisplay="true"/> 
+
+                                <h:outputText value="Confirmar Senha" styleClass="sis-label" /> 
+                                <p:password id="senhaconf2" size="30" value="#{mbPessoa.confereSenha}" maxlength="22"   styleClass="sis-input"
+                                            promptLabel="Confirme sua Senha" weakLabel="Senha Fraca" validator="passwordValidator"
+                                            goodLabel="Senha Boa" strongLabel="Senha Forte" feedback="true">
+                                </p:password>  
+                                
+                            <h:outputText value="Situação" styleClass="sis-label" />  
+                            <h:selectOneMenu  value="#{mbPessoa.pessoa.estado}" required="true" requiredMessage="Selecione uma situação" >                                
+                                <f:selectItem itemLabel="Usuário ativo" itemValue="1"/>
+                                <f:selectItem itemLabel="Usuário desativado" itemValue="0" />
+                            </h:selectOneMenu>
+                            
+                        </p:panelGrid>
+                        </div>
+
+
+
+                        <p:toolbar styleClass="sis-tool-bar">
+                            <f:facet name="right"  >
+                                <p:commandButton  onclick="recolher()"  value="Salvar" action="#{mbPessoa.addPessoa}" image="ui-icon ui-icon-disk "  update="@form :formtable"  styleClass="tool-bot sis-btn-form" />
+                            </f:facet>
+
+                            <f:facet name="right" >
+                                <p:commandButton   onclick="recolher()" value="Cancelar" actionListener="#{mbPessoa.cancelarPessoa}" image="ui-icon ui-icon-close" update="@form :formtable" styleClass="tool-bot sis-btn-form" />
+                            </f:facet>
+                            
+                            
+                        </p:toolbar>                        
+                        
+                    </h:form>
+               </div>
+        </div>
+        <br/>        
+
+    
+<h:form id="formtable">
+            <p:growl id="msg1"/>   
+
+            <p:growl id="message" showDetail="true" />            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Nao" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>  
+            
+            <p:dataTable id="idTabela" var="pessoa" value="#{mbPessoa.pessoas}"
+                         selectionMode="multiple" selection="#{mbPessoa.pessoas}" rowKey="#{pessoa.idPessoa}"
+                 paginator="true" rows="10" tableStyleClass="ui-table-columntoggle">
+
+                <f:facet name="header">Lista de Usuários</f:facet>
+                <p:column  style="text-align: left">
+                    <f:facet name="header" >
+                        <h:outputText value="Nome" />                        
+                    </f:facet>                    
+                    <h:outputText value="#{pessoa.nome}" style="font-size: 130%; font-weight: bold;"/><br/>
+                    <h:outputText value="E-mail: #{pessoa.email}"/><br/>
+                    <h:outputText value="Permissão: #{pessoa.tipoUsuario}"/><br/>   
+                    <h:outputText value="Situação: #{pessoa.situacaoConversao}"/><br/>
+                </p:column>
+
+               <p:column  style="text-align: left; width: 25%">
+                    <f:facet name="header" >
+                        <h:outputText value="Editar | Apagar | Envio" style="text-align: center"/>
+                    </f:facet>
+                    <p:commandButton  styleClass="tool-bot" onclick="expandir()" inline="true" value="" image="ui-icon ui-icon-pencil"
+                                     process="@this" update=":formPessoa">
+                        <f:setPropertyActionListener target="#{mbPessoa.pessoa}"
+                                                     value="#{pessoa}"/>
+                    </p:commandButton>
+                    <p:commandButton   styleClass="tool-bot" inline="true" value="" action="#{mbPessoa.deletePessoa}"
+                                     image="ui-icon ui-icon-close"  process="@this" update="@form :formtable">
+                        <f:setPropertyActionListener target="#{mbPessoa.pessoa}"
+                                                     value="#{pessoa}"/>
+                        <p:confirm header="Apagar usuário" message="Confirma a remoção?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    
+                    <p:commandButton  inline="true" value=""  styleClass="tool-bot" action="#{mbPessoa.enviarEmailDados()}"
+                                     image="ui-icon ui-icon-mail-closed" process="@this" update="@form :formtable">
+                        <f:setPropertyActionListener target="#{mbPessoa.pessoa}"
+                                                     value="#{pessoa}"/>
+                        <p:confirm header="Envio de dados de acesso" message="Confirma o envio?" icon="ui-icon-alert" />
+                    </p:commandButton>                     
+                    
+
+                </p:column>
+  
+            </p:dataTable>
+
+        </h:form>         
+    <script>        
+        function expandir(){                        
+            $("#formaPessoa").collapsible( "option", "collapsed", false );
+            $("#nomePessoa").focus();
+        }
+
+        function recolher(){
+            $("#formaPessoa").collapsible( "option", "collapsed", true );            
+        }        
+        
+    </script>
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+
+
+
+

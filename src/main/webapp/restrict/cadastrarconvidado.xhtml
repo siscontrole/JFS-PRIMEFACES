@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="./../resources/main.xhtml">
+    
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>        
+
+    <ui:define name="tarefas">
+        <div  data-role="collapsibleset" data-theme="a" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                <div id="formaConvidado"  data-role="collapsible"> 
+                    <h3>Convidados</h3> 
+                    <h:form prependId="false" id="formConvidado">
+                        <p:growl id="msg0"/> 
+                        <div class="ui-fluid">
+                        <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" styleClass="ui-panelgrid-blank" id="grid0" layout="grid">
+                            <h:outputLabel /><h:inputHidden id="idConvidado" value="#{mbConvidado.convidado.idConvidado}" /> 
+                            
+                            
+                            <h:outputText value="Nome" styleClass="sis-label" />                            
+                            <p:inputText type="text"  id="nome"  value="#{mbConvidado.convidado.nome}" onkeyup="this.value = this.value.toUpperCase()" required="true" requiredMessage="O campo [Nome] é obrigatório."  styleClass="sis-input"/>
+                            
+                            <h:outputText value="Email" styleClass="sis-label" /> 
+                            <p:inputText type="text"  id="email"  value="#{mbConvidado.convidado.email}" onkeyup="this.value = this.value.toLowerCase()" required="true" requiredMessage="O campo [Nome] é obrigatório."  styleClass="sis-input"/>
+                       
+                            <h:outputText value="Evento" styleClass="sis-label" />  
+                            <h:selectOneMenu  value="#{mbConvidado.convidado.evento}" required="true" requiredMessage="Selecione um evento" >  
+                                <f:selectItems var="evento"  value="#{mbEvento.eventos}" itemValue="#{evento}" itemLabel="#{evento.nome}"/>
+                            </h:selectOneMenu>                          
+                            
+                            <h:outputText value="Detalhes" styleClass="sis-label" />                     
+                            <p:inputText type="text"  id="detalhesDoConvidado"  value="#{mbConvidado.convidado.detalhesDoConvidado}" onkeyup="this.value = this.value.toUpperCase()" required="false" requiredMessage="O campo [Detalhes] é obrigatório."  styleClass="sis-input"/>
+   
+                            <h:outputText value="Nº Crianças" styleClass="sis-label" /> 
+                            <p:inputMask id="numConvCriancas" disabled="false" value="#{mbConvidado.convidado.numConvCriancas}" mask="" styleClass="sis-input"/>
+
+                            <h:outputText value="Nº Adultos" styleClass="sis-label" /> 
+                            <p:inputMask id="numConvAdultos" disabled="false" value="#{mbConvidado.convidado.numConvAdultos}" mask="" styleClass="sis-input"/>                            
+                            
+                            <h:outputText value="Confirmado" styleClass="sis-label" />  
+                            <h:selectOneMenu  value="#{mbConvidado.convidado.confirmacao}" required="true" requiredMessage="Selecione um evento" >
+                                <f:selectItem itemLabel="Falta responder" itemValue="1"/>
+                                <f:selectItem itemLabel="Vai ao evento" itemValue="2"/>
+                                <f:selectItem itemLabel="Não vai ao evento" itemValue="3" />
+                            </h:selectOneMenu>   
+                            
+                            <h:outputText value="Situação" styleClass="sis-label" />  
+                            <h:selectOneMenu  value="#{mbConvidado.convidado.estado}" required="true" requiredMessage="Selecione uma situação" >                                
+                                <f:selectItem itemLabel="Convidado ativo" itemValue="1"/>
+                                <f:selectItem itemLabel="Convidado desativado" itemValue="0" />
+                            </h:selectOneMenu>   
+     
+
+                          
+                        
+                        </p:panelGrid>
+                        </div>
+                        <p:toolbar styleClass="sis-tool-bar">
+                            <f:facet name="right"  >
+                                <p:commandButton  onclick="recolher()"  value="Salvar" action="#{mbConvidado.addConvidado}" image="ui-icon ui-icon-disk "  update="@form :formtable"  styleClass="tool-bot sis-btn-form" />
+                            </f:facet>
+
+                            <f:facet name="right" >
+                                <p:commandButton   onclick="recolher()" value="Cancelar" actionListener="#{mbConvidado.cancelarConvidado}" image="ui-icon ui-icon-close" update="@form :formtable" styleClass="tool-bot sis-btn-form" />
+                            </f:facet>
+                            
+                            
+                        </p:toolbar>
+                    </h:form>
+               </div>
+        </div>
+        <br/>
+        
+        <h:form id="formtable">
+            <p:growl id="message" showDetail="true" />
+
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Nao" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>            
+            
+            
+                 
+            <p:dataTable id="idConvidado" var="convidado" value="#{mbConvidado.convidados}"
+                          selection="#{mbConvidado.convidados}" rowKey="#{convidado.idConvidado}"
+                 paginator="true" rows="10" selectionMode="multiple">
+
+                <f:facet name="header">Lista de Convidados</f:facet>
+                
+               
+        
+                
+                <p:column  style="text-align: left; width: 50%">
+                    <f:facet name="header" >
+                    
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    
+                    <h:outputText value="#{convidado.nome}" style="font-size: 130%; font-weight: bold;"/><br/>
+                    <h:outputText value="Evento: #{convidado.evento.nome}"/><br/>
+                    <h:outputText value="Adultos e Crianças: #{convidado.numConvAdultos}/#{convidado.numConvCriancas}"/><br/>
+                    <h:outputText value="Situação: #{convidado.situacaoConversao}"/><br/>
+                </p:column>
+               
+               
+   
+               
+                <p:column  style="text-align: center; font-size: 130%; font-weight: bold;">
+                    <f:facet name="header" >
+                        <h:outputText value="Envios" />                    
+                    </f:facet>
+                    <h:outputText value="#{convidado.disparos}"/>
+                </p:column>                   
+
+                
+                
+                <p:column  style="width: 20%; text-align: left; font-size: 130%; font-weight: bold;">
+                    <f:facet name="header" >
+                        <h:outputText value="Resposta" />                    
+                    </f:facet>
+                    <h:outputText value="#{convidado.confirmacaoConversao}"/>
+                </p:column>                
+                <p:column  style="text-align: left; width: 25%">
+                    
+                    <f:facet name="header" >
+                        <h:outputText value="Editar | Apagar | Envio" style="text-align: center"/>
+                    </f:facet>
+                    
+                    
+                    <p:commandButton  onclick="expandir()"  inline="true" value=""  styleClass="tool-bot" image="ui-icon ui-icon-pencil"
+                                     process="@this" update="formConvidado">
+                        <f:setPropertyActionListener target="#{mbConvidado.convidado}"
+                                                     value="#{convidado}"/>
+                    </p:commandButton>
+
+                    
+                    <p:commandButton  inline="true" value=""  styleClass="tool-bot" action="#{mbConvidado.confirmaRemocao()}"
+                                     image="ui-icon ui-icon-close" process="@this" update="@form :formtable">
+                        <f:setPropertyActionListener target="#{mbConvidado.convidado}"
+                                                     value="#{convidado}"/>
+                        <p:confirm header="Apagar convidado" message="Confirma a remoção?" icon="ui-icon-alert" />
+                    </p:commandButton>   
+                    
+                    <p:commandButton  inline="true" value=""  styleClass="tool-bot" action="#{mbConvidado.enviarEmailConvidado()}"
+                                     image="ui-icon ui-icon-mail-closed" process="@this" update="@form :formtable">
+                        <f:setPropertyActionListener target="#{mbConvidado.convidado}"
+                                                     value="#{convidado}"/>
+                        <p:confirm header="Envio de convite" message="Confirma o envio?" icon="ui-icon-alert" />
+                    </p:commandButton>                      
+                    
+                     
+                   
+
+                </p:column>
+            
+            
+               
+                <f:facet name="footer" ><br/>
+                    <h:form id="formenvio">
+                        
+                            
+                            <p:commandButton process="@this"  update="@form :formtable" icon="ui-icon-circle-arrow-e" value="Enviar Convites" action="#{mbConvidado.confirmaEnvio()}" 
+                                     styleClass="tool-bot" style="text-align: left; width: 300px !important;" >
+                                <f:setPropertyActionListener target="#{mbConvidado.convidado}"
+                                                     value="#{convidado}"/>
+                                <p:confirm header="Envio de convite" message="O sistema vai enviar um convite por e-mail para os convidados que ainda não responderam, você confirma?" icon="ui-icon-alert" />
+                            </p:commandButton>  
+                            
+                            
+                            </h:form> 
+                </f:facet>
+               
+            </p:dataTable>
+            
+            
+
+        </h:form> 
+        
+    <script>        
+        function expandir(){                        
+            $("#formaConvidado").collapsible( "option", "collapsed", false );
+            $("#nome").focus();
+        }
+        
+        function recolher(){
+            $("#formaConvidado").collapsible( "option", "collapsed", true );            
+        }        
+    </script>   
+        
+        
+    </ui:define>
+
+</ui:composition>

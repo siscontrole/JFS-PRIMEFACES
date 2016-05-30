@@ -31,7 +31,9 @@
             <name>PrimeFaces Maven Repository</name>
             <url>http://repository.primefaces.org</url>
             <layout>default</layout>
-        </repository>        
+        </repository>      
+        
+            
                 
         <!-- FACELETS TAGLIBRARIES REPOSITORY -->
         
@@ -67,6 +69,8 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+        
+       
         
         <!-- || DEPENDÊNCIAS DO JAVA SERVER FACES || -->                        
         <!-- ############## JSF-API ################ -->
@@ -109,8 +113,32 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>3.4.2</version>
+            <version>5.3</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>4.0.0</version>
+        </dependency>        
+        
+        
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
+        </dependency>                    
+        
+        <dependency>  
+            <groupId>org.primefaces.themes</groupId>  
+            <artifactId>redmond</artifactId>  
+            <version>${themes.version}</version>
+        </dependency>        
         
         <!-- ######## TEMAS DO PRIMEFACES ######### -->        
         <dependency>              
@@ -124,6 +152,8 @@
             <artifactId>le-frog</artifactId>  
             <version>${themes.version}</version> 
         </dependency> 
+        
+   
         
         <dependency>  
             <groupId>org.primefaces.themes</groupId>  
@@ -155,6 +185,38 @@
             <version>${themes.version}</version> 
         </dependency>
 
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bcprov-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bcmail-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bctsp-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>resources-ckeditor</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>resources-codemirror</artifactId>
+            <version>4.0.0</version>
+        </dependency>        
+        
         <!-- SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -437,6 +499,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 		</dependency>
+         <!-- ||||||| E-MAIL |||||||| -->          
+                <dependency>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-email</artifactId>
+                    <version>1.3.2</version>
+                </dependency>
+                
         
     </dependencies>
 

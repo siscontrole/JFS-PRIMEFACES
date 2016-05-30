@@ -2,64 +2,100 @@ package br.com.semeru.model.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
 
+
 @Entity
 @Table (name="pessoa")
-public class Pessoa implements Serializable{    
-    private static final long serialVesrionUID = 1L;
+public class Pessoa implements Serializable {
+    
+    private static final long serialVersionUID =  1L;
     
     @Id
     @GeneratedValue
-    @Column  (name="idPessoa", nullable = false)    
-    private Integer idPessoa;
-    @Column (name = "Nome", nullable = false, length = 255)
+    @Column(name="idPessoa", nullable=false)
+    public Integer idPessoa;
+    @Column (name="Name", nullable = false, length = 80 )
     private String nome;
-    @Column (name = "Email", nullable = false, length = 255)    
+    @Column (name="Email", nullable = false, length = 80 )
     private String email;
-    @Column (name = "Telefone", nullable = false, length = 15)
+    @Column (name="Telefone", nullable = false, length = 15 )//(034)-8888-8888
     private String telefone;
-    @Column (name = "CPF", nullable = false, length = 14)
+    @Column (name="CPF", nullable = true, length = 14 )
     private String cpf;
-    @Column (name = "DataDeCadastro", nullable = false)
+    @Column (name="DataDeNascimento", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeNascimento;
-    @Column (name = "DataDeCadastro", nullable = false)
+    @Column (name="DataDeCadastro", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeCadastro;
+        
+    @Column(name = "Login", unique=true, length = 25)
+    private String login;
+    @Column(name = "Senha", length = 40)
+    private String senha;
+    @Column(name = "Permissao", length = 36)
+    private String permissao;
+    @Column (name="estado", nullable = false)
+    private Integer estado;     
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
     
-    @OneToOne(mappedBy = "pessoa", fetch = FetchType.LAZY)
-    @ForeignKey(name = "PessoaSexo")    
-    private Endereco endereco;
     
-    @ManyToOne(optional = false)
-    @ForeignKey(name = "PessoaSexo")    
-    @JoinColumn(name="idSexo", referencedColumnName="idSexo")
+    
+
+    
+    @ManyToOne(optional=false)
+    @ForeignKey(name = "PessoaSexo") 
+    @JoinColumn(name="IdSexo", referencedColumnName = "IdSexo")
     private Sexo sexo;
+    
+    private String tipoUsuario;
 
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
     
+     public String getSituacaoConversao() {
+        String retorno;
+        if(this.estado==1){
+            retorno = "Ativo";
+        }else{
+            retorno = "Inativo";            
+        }
+        
+      return retorno;        
+    }   
+
+    public String getTipoUsuario() {
+        tipoUsuario = "N/D";
+        if(this.permissao.equals("ROLE_ADMIN")){
+            tipoUsuario = "Administrador";        
+        }
+        
+        if(this.permissao.equals("ROLE_STAFF")){
+            tipoUsuario = "Organizador";        
+        }        
+        
+        return tipoUsuario;        
+    }
     
-    public Pessoa() {
-    }    
 
     public Integer getIdPessoa() {
         return idPessoa;
@@ -67,6 +103,12 @@ public class Pessoa implements Serializable{
 
     public void setIdPessoa(Integer idPessoa) {
         this.idPessoa = idPessoa;
+    }
+    
+    
+
+    public Pessoa() {
+        this.sexo = new Sexo();
     }
 
     public String getNome() {
@@ -117,27 +159,48 @@ public class Pessoa implements Serializable{
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Sexo getSexo() {
+        return sexo;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
-    
 
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
+         
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.idPessoa);
+        int hash = 7;
+        hash = 23 * hash + (this.idPessoa != null ? this.idPessoa.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -145,9 +208,10 @@ public class Pessoa implements Serializable{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (!Objects.equals(this.idPessoa, other.idPessoa)) {
+        if (this.idPessoa != other.idPessoa && (this.idPessoa == null || !this.idPessoa.equals(other.idPessoa))) {
             return false;
         }
         return true;
-    }    
+    }
+             
 }

@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="./../resources/main.xhtml">
+    
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>        
+
+    <ui:define name="tarefas">
+        <div  data-role="collapsibleset" data-theme="a" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                <div id="formaEvento" data-role="collapsible"> 
+                    <h3>Eventos</h3> 
+                    <h:form prependId="false" id="formEvento">
+                        <p:growl id="msg0"/> 
+                        <div class="ui-fluid">
+                        <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" styleClass="ui-panelgrid-blank" id="grid0" layout="grid">
+                            <h:outputLabel /><h:inputHidden id="idEvento" value="#{mbEvento.evento.idEvento}"/>
+                            
+                            <h:outputText value="Nome" styleClass="sis-label" />                         
+                            <p:inputText type="text"  id="nome"  value="#{mbEvento.evento.nome}" onkeyup="this.value = this.value.toUpperCase()" required="true" requiredMessage="O campo [Nome] é obrigatório."  styleClass="sis-input"/>
+
+                            
+                            <h:outputText value="Organizador" styleClass="sis-label" />  
+                            <h:selectOneMenu  value="#{mbEvento.evento.pessoa.idPessoa}" required="true" requiredMessage="Selecione um evento" >  
+                                <f:selectItems var="pessoa"  value="#{bbPessoa.pessoas}" itemValue="#{pessoa.idPessoa}" itemLabel="#{pessoa.nome}"/>
+                            </h:selectOneMenu>                             
+
+                            <h:outputText value="Local" styleClass="sis-label" />                        
+                            <p:inputText type="text"  id="localDoEvento" value="#{mbEvento.evento.localDoEvento}" onkeyup="this.value = this.value.toUpperCase()" required="true" requiredMessage="O campo [Local do Evento] é obrigatório."    styleClass="sis-input"/>
+
+                            <label for="dataDoEvento">Data</label>                        
+                            <p:calendar id="dataDoEvento" value="#{mbEvento.evento.dataDoEvento}" required="true" requiredMessage="O campo [Data do Evento] é obrigatório" locale="pt_BR" navigator="true" effect="explode" pattern="dd/MM/yyyy"  />
+
+                            <label for="horaDoEvento">Horas</label>                                                    
+                            <p:inputMask  id="horaDoEvento" value="#{mbEvento.evento.horaDoEvento}" mask=""  styleClass="sis-input"/>
+                            
+                            <label for="name">Detalhes</label>                        
+                            <p:inputText type="text"  id="detalhesDoEvento"  value="#{mbEvento.evento.detalhesDoEvento}" onkeyup="this.value = this.value.toUpperCase()" required="false" requiredMessage="O campo [Detalhes] é obrigatório."  styleClass="sis-input" />                           
+                            
+                        </p:panelGrid>
+                        </div>
+                        
+                        <p:toolbar styleClass="sis-tool-bar">
+                            
+                            <f:facet name="right"  >
+                                <p:commandButton  onclick="recolher()"  value="Salvar" action="#{mbEvento.addEvento}" image="ui-icon ui-icon-disk "  update="@form :formtable"  styleClass="tool-bot sis-btn-form" />
+                            </f:facet>                            
+
+                            <f:facet name="right" >
+                                <p:commandButton   onclick="recolher()" value="Cancelar" actionListener="#{mbEvento.cancelarEvento}" image="ui-icon ui-icon-close" update="@form :formtable" styleClass="tool-bot sis-btn-form" />
+                            </f:facet>
+                          
+                            
+                            
+                        </p:toolbar>                        
+                    </h:form>
+               </div>
+        </div>
+        <br/>
+        
+        <h:form id="formtable">
+            <p:growl id="msg1"/>
+            
+            <p:growl id="message" showDetail="true" />            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Nao" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>              
+                 
+            <p:dataTable id="idTabela" var="evento" value="#{mbEvento.eventos}"
+                         selectionMode="multiple" selection="#{mbEvento.eventos}" rowKey="#{evento.idEvento}"
+                 paginator="true" rows="10" tableStyleClass="ui-table-columntoggle">
+
+                <f:facet name="header">Lista de Eventos</f:facet>
+                <p:column  style="text-align: left">
+                    <f:facet name="header" >
+                        <h:outputText value="Nome" />
+                    </f:facet>                    
+                    <h:outputText value="#{evento.nome}" style="font-size: 130%; font-weight: bold;"/><br/>
+                    <h:outputText value="Local: #{evento.localDoEvento}"/><br/>
+                    <h:outputText value="Data e Hora: #{evento.dataDoEvento} - #{evento.horaDoEvento} "/><br/>
+                </p:column>
+
+                <p:column style="width: 20%">
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <p:commandButton  onclick="expandir()" inline="true" value="" image="ui-icon ui-icon-pencil" styleClass="tool-bot"
+                                     process="@this" update="@form :formtable">
+                        <f:setPropertyActionListener target="#{mbEvento.evento}"
+                                                     value="#{evento}"/>
+                    </p:commandButton>
+                    <p:commandButton  inline="true" value="" action="#{mbEvento.deleteEvento}" styleClass="tool-bot"
+                                     image="ui-icon ui-icon-close" update="@form :formtable">
+                        <f:setPropertyActionListener target="#{mbEvento.evento}"
+                                                     value="#{evento}"/>
+                        <p:confirm header="Apagar evento" message="Confirma a remoção?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    
+
+                </p:column>
+  
+            </p:dataTable>
+
+        </h:form> 
+    <script>        
+        function expandir(){                        
+            $("#formaEvento").collapsible( "option", "collapsed", false );
+            $("#nome").focus();
+        }
+        
+        function recolher(){
+            $("#formaEvento").collapsible( "option", "collapsed", true );            
+        }        
+    </script>        
+    </ui:define>
+
+</ui:composition>

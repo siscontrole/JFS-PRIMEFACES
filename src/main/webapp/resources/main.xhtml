@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Menu home.faces aqui principal-->
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      ><!-- xmlns:sec="http://www.springframework.org/security/facelets/tags" -->
+    
+    <h:head>
+        <title>Convite Virtual - Siscontrole</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+         <!-- <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/square/jquery.mobile.squareui.min.css" rel="stylesheet" type="text/css" /> -->
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.js" type="text/javascript" rel="javascript" />        
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />        
+        <link href="../resources/restrict/css/siscontrole-custom.css" rel="stylesheet" type="text/css"/>   
+        <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/dist/css/timeline.css" rel="stylesheet" type="text/css"/>
+
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>        
+    </h:head>
+
+    <h:body  style="height: 100%; min-height: 100%; background-color: #0094d9;background-image: url('../resources/restrict/images/light-wool.png');" >
+        
+        <div data-role="page" style="overflow-y: hidden; ">
+            
+            <div data-role="panel" id="mypanel"  style=" background-color: #333;"  data-display="push" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-push ui-body-b ui-panel-animate ui-panel-open">
+                
+            <div class="ui-panel-inner"><ul data-role="listview" class="ui-listview">
+            <li data-icon="delete" class="ui-first-child"><a href="#" data-rel="close" class="ui-btn ui-btn-icon-right ui-icon-delete">Fechar menu</a></li>
+                <li><a href="../restrict/home.faces" class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-transition="flip">Painel</a></li>
+                <li><a href="../restrict/cadastrarpessoa.faces" class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-transition="slidefade">Usuários</a></li>
+                <li><a href="../restrict/cadastrarevento.faces" class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-transition="slidefade">Eventos</a></li>
+                <li><a href="../restrict/cadastrarconvidado.faces" class="ui-btn ui-btn-icon-right ui-btn-icon-right ui-icon-carat-r" data-transition="slidefade">Convidados</a></li>                
+		</ul>    
+            </div>                
+    
+            </div><!-- /panel -->            
+            
+            <div data-role="header" style="height: 50px">
+              <div style="font-size: 70%; margin-top: 18px; margin-left: 50px">
+                  <h:outputText value="Olá, #{bbUsuarioLogado.procuraPessoa().getNome()}!"/>
+              </div>
+              <a href="#mypanel" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button" style="margin-top:4px">Menu</a>
+              <a style="margin-top: 4px" href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout" class="ui-btn-right ui-btn  ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-power">Sair</a>
+            </div>  <!-- /header -->            
+
+            <div id="tarefas" role="main" class="ui-content" style="background-color: #0094d9;background-image: url('http://www.transparenttextures.com/patterns/light-wool.png');">
+                <ui:insert name="tarefas"></ui:insert>
+            </div> <!-- /content -->
+
+        <div style="position:fixed; bottom:0; background-color: #f6f6f6; width: 100%; background-color: #FFF; height: 20px;  "></div>    
+        </div> <!-- /page -->
+        
+        
+
+                           
+        
+    </h:body>
+
+</html>
