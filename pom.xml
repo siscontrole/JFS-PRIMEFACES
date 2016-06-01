@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.semeru</groupId>
-    <artifactId>semeru_jsf_maven</artifactId>
+    <artifactId>convite</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>semeru_jsf_maven</name>
+    <name>convite</name>
 
     <properties>
-        <spring.version>3.0.5.RELEASE</spring.version>
+        <spring.version>3.1.0.RELEASE</spring.version>
         <themes.version>1.0.8</themes.version>
         <jsf.version>2.1.7</jsf.version>
         <jstl.version>1.2</jstl.version>
@@ -373,27 +373,28 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>3.1.0.RELEASE</version>            
             <exclusions>
                 <exclusion>
                     <artifactId>spring-security-acl</artifactId>
                     <groupId>org.springframework.security</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>            
+        </dependency>   
+                   
         
         <!-- ####### SPRING-SECURITY-CONFIG ######## -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>3.1.0.RELEASE</version>
         </dependency>
 
         <!-- ######## SPRING-SECURITY-CORE ######### -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>3.1.0.RELEASE</version>
             <exclusions>
                 <exclusion>
                     <artifactId>aspectjrt</artifactId>
@@ -410,7 +411,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>3.1.0.RELEASE</version>
         </dependency>
 
         <!-- ||| DEPENDÊNCIAS DO SPRING FRAMEWORK |||-->          
@@ -461,7 +462,7 @@
             <artifactId>spring-tx</artifactId>
             <groupId>org.springframework</groupId>
             <type>jar</type>
-            <version>3.0.5.RELEASE</version>
+            <version>3.1.0.RELEASE</version>
         </dependency>
         
         <!-- ############# SPRING-WEB ############# -->
@@ -505,7 +506,14 @@
                     <artifactId>commons-email</artifactId>
                     <version>1.3.2</version>
                 </dependency>
-                
+        
+                <dependency>
+           <groupId>org.springframework.webflow</groupId>
+           <artifactId>spring-faces</artifactId>
+           <version>2.4.1.RELEASE</version>
+        </dependency>
+
+         
         
     </dependencies>
 

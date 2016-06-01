@@ -4,16 +4,21 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
-      xmlns:sec="http://www.springframework.org/security/facelets/tags">
+      xmlns:p="http://primefaces.org/ui">
+    
+    
 
     <h:head>
-        <title>Login - Convite Virtual</title>
+        <title>Login Convite Virtual</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
-        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
-        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <script src="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.js" type="text/javascript" rel="javascript" />       
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />         
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/restrict/jquery.mobile/jquery.mobile-1.4.5.min.js" type="text/javascript" rel="javascript" />        
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/restrict/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />        
+        <link href="#{request.contextPath}/resources/restrict/css/siscontrole-custom.css" rel="stylesheet" type="text/css"/>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>        
     </h:head>
     
     <h:body onload="jQuery('#j_username').focus();">
@@ -25,7 +30,7 @@
 
             <p:dialog header="Área Restrita"
                       id="dialog"  
-                      modal="true"
+                      modal="false"
                       minWidth="335"
                       width="335"
                       closable="false"
@@ -38,6 +43,7 @@
 
 
                 <form action="j_spring_security_check" method="post" id="login">
+                    
                     <h:panelGrid columns="2" cellpadding="3">
                         <h:outputLabel for="j_username" value="Usuário: " /> 
                         <h:inputText id="j_username" required="true"/>
@@ -45,7 +51,7 @@
                         <h:inputSecret id="j_password" required="true"/>
                         
 			<h:outputLabel value="Lembrar " />
-                        <input type='checkbox' name='_spring_security_remember_me'/>
+                        <input type='checkbox' name='j_spring_security_remember_me'/>
                         <h:commandButton value="Acessar"/>
                     </h:panelGrid>
                 </form>

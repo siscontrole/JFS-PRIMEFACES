@@ -38,9 +38,9 @@ public class Convidado implements Serializable{
     @Column (name="dataDeCadastro", nullable = false,  columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataDeCadastro= new Date();    
-    @Column (name="numConvAdultos", nullable = true, columnDefinition="tinyint(2) default 0" )
+    @Column (name="numConvAdultos", nullable = true)
     private Integer numConvAdultos;    
-    @Column (name="numConvCriancas", nullable = true, columnDefinition="tinyint(2) default 0" )
+    @Column (name="numConvCriancas", nullable = true)
     private Integer numConvCriancas;      
     @Column (name="url", nullable = true, length = 255, columnDefinition="varchar(255) default 'n/d'")
     private String url;          
@@ -52,7 +52,12 @@ public class Convidado implements Serializable{
     private Integer estado; 
     
     @Column (name="disparado", nullable = true, columnDefinition="tinyint(2) default 0")
-    private Integer disparado;     
+    private Integer disparado;  
+    
+  
+    
+
+
     
     @Column (name="disparos", nullable = true, columnDefinition="tinyint(2) default 0")
     private Integer disparos;  

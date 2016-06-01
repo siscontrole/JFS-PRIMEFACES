@@ -2,20 +2,34 @@
 <b:beans xmlns="http://www.springframework.org/schema/security"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns:b="http://www.springframework.org/schema/beans"
+         
          xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/security
-                            http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+                            http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+    
 
         <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/login.faces" access="permitAll" />
         <intercept-url pattern="/restrict/**" access="isAuthenticated()" />
         <intercept-url pattern="/public/**" access="permitAll"/>
         
-        <form-login login-page="/login.faces" authentication-failure-url="/login.faces?erro=true"
-                    default-target-url="/restrict/home.faces" always-use-default-target="true" />		
+        
+
+        
+        <form-login login-page="/login.faces" 
+                    authentication-failure-url="/login.faces?erro=true"
+                 authentication-success-handler-ref="myAuthenticationSuccessHandler"
+                    
+                    
+        />		
         <access-denied-handler error-page="/acessonegado.faces" />
-    </http>                
+        </http> 
+        
+            <b:bean id="myAuthenticationSuccessHandler"
+        class="br.com.semeru.security.MySimpleUrlAuthenticationSuccessHandler" />
+        
 
     <!-- NO PROJETO SEMERU PADRÃO FIZEMOS DESSA FORMA -->  
     <authentication-manager>
@@ -33,6 +47,12 @@
         <b:property name="username" value="root" />
         <b:property name="password" value="" />
     </b:bean>
+    
+    
+    
+    
+    
+
     
     <!-- MAS EXISTEM OUTRAS 2 FORMAS DE SE FAZER ISSO -->
     <!-- VOCÊ PODE CUSTOMIZAR A AUTENTICATION PROVIDER -->
